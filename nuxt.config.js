@@ -74,11 +74,12 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    }
+    },
+    transpile: ['@amcharts/amcharts4']
   },
   dev: 'dev',
   apiCalls: {
-    serverUrl: 'http://0.0.0.0:9098',
-    productionServerUrl: ''
+    localServerUrl: 'http://localhost:9999',
+    serverUrl: 'https://yeahapp-backend.herokuapp.com'
   }
 }

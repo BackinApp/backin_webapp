@@ -1,32 +1,31 @@
-const express = require('express')
-const consola = require('consola')
-const { Nuxt, Builder } = require('nuxt')
-var bodyParser = require('body-parser')
-const app = express()
+const express = require('express');
+const { Nuxt, Builder } = require('nuxt');
+var bodyParser = require('body-parser');
+const app = express();
+
+const consola = require('consola');
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 // Import and Set Nuxt.js options
-const config = require('../nuxt.config.js')
-config.dev = process.env.NODE_ENV !== 'production'
+const config = require('../nuxt.config.js');
+config.dev = process.env.NODE_ENV !== 'production';
+let asyncFuncs = require('./asyncFunctions/index.js');
 
-var asyncFuncs = require('./asyncFuncs.js')
-
-async function start () {
+function start () {
   // Init Nuxt.js
-  const nuxt = new Nuxt(config)
-
-  const { host, port } = nuxt.options.server
+  const nuxt = new Nuxt(config);
+  const { host, port } = nuxt.options.server;
 
   // Build only in dev mode
   if (config.dev) {
-    const builder = new Builder(nuxt)
-    await builder.build()
+    const builder = new Builder(nuxt);
+    await builder.build();
   } else {
-    await nuxt.ready()
+    await nuxt.ready();
   }
 
   // Add POST - /api/register
@@ -254,13 +253,13 @@ async function start () {
   })
 
   // Give nuxt middleware to express
-  app.use(nuxt.render)
+  app.use(nuxt.render);
 
   // Listen the server
-  app.listen(port, host)
+  app.listen(port, host);
   consola.ready({
     message: `Server listening on http://${host}:${port}`,
     badge: true
-  })
+  });
 }
-start()
+start();
