@@ -15,7 +15,7 @@ const config = require('../nuxt.config.js');
 config.dev = process.env.NODE_ENV !== 'production';
 let asyncFuncs = require('./asyncFunctions/index.js');
 
-function start () {
+async function start () {
   // Init Nuxt.js
   const nuxt = new Nuxt(config);
   const { host, port } = nuxt.options.server;
