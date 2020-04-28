@@ -1,0 +1,38 @@
+<template>
+  <div class="main background">
+    <nav-bar-logged/> <!-- nav-bar-logged -->
+    <div>
+      <br/>
+      <h1 class="title">App</h1>
+
+    </div> <!-- general -->
+  </div> <!-- main background -->
+</template> <!-- template -->
+
+<style scoped>
+  .app-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+</style>
+
+<script>
+  const Cookie = process.client ? require('js-cookie') : undefined
+
+  import NavBarLogged from '~/components/NavBarLogged.vue'
+  import AppCard from '~/components/AppCard.vue'
+
+    export default {
+      props: [
+        'app-id'
+      ],
+      data() {
+        return {
+          
+        }
+      },
+      components: {
+        NavBarLogged
+      }
+    }
+</script>
