@@ -3,21 +3,21 @@
   "version": "1.0.0",
   "description": "Backin webapp project",
   "author": "Giovanni Delgado",
-  "private": true,
+  "private": false,
   "scripts": {
+    "precommit": "yarn run lint",
+    "dev-local": "nuxt build && cross-env NODE_ENV=qa nodemon server/index.js --watch server",
     "dev": "nuxt dev",
-    "dev-server": "nuxt build && cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "heroku-start": "nuxt start -p $PORT",
-    "start-server": "cross-env NODE_ENV=production node server/index.js",
+    "heroku-start": "cross-env NODE_ENV=production node server/index.js",
+    "start": "cross-env NODE_ENV=production node server/index.js -p $PORT",
     "generate": "nuxt generate",
     "clean:build": "rm -rf ./.cache && rm -rf ./.nuxt",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest",
     "test:watch": "jest — watch",
     "test:coverage": "jest — coverage",
-    "heroku-postbuild": "yarn run build"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@amcharts/amcharts4": "^4.6.9",
